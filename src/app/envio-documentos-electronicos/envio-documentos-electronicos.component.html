@@ -1,0 +1,134 @@
+<div class="envio-documentos-container">
+  <h2>Envío de Documentos Electrónicos</h2>
+
+  <!-- Fecha y Tipo Documento -->
+  <div class="section">
+    <label for="fecha-documento">Documento del día:</label>
+    <input type="date" id="fecha-documento" class="form-control" />
+
+    <div class="radio-group">
+      <label>Tipo Documento:</label>
+      <div>
+        <input type="radio" id="factura" name="tipoDocumento" value="Factura" />
+        <label for="factura">Factura</label>
+        <input type="radio" id="nota-credito" name="tipoDocumento" value="Nota Crédito" />
+        <label for="nota-credito">Nota Crédito</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tipo de Facturación -->
+  <div class="section tipo-facturacion">
+    <label>Tipo de Facturación:</label>
+    <div class="radio-group">
+      <div class="left-column">
+        <div>
+          <input type="radio" id="diarias" name="tipoFacturacion" value="Operaciones Diarias" (change)="toggleOperacionesDiarias(true)"/>
+          <label for="diarias">Operaciones Diarias</label>
+        </div>
+
+        <!-- Mercado de Operaciones Diarias (Visible solo si "Operaciones Diarias" está seleccionado) -->
+        <div class="section mercado-operaciones" *ngIf="mostrarOperacionesDiarias">
+          <label>Mercado de Op. Diarias:</label>
+          <div>
+            <input type="radio" id="variable" name="mercado" value="Variable" />
+            <label for="variable">R. Variable</label>
+          </div>
+          <div>
+            <input type="radio" id="fija-financiera" name="mercado" value="Fija y Financiera" />
+            <label for="fija-financiera">R. Fija e I. Financiera</label>
+          </div>
+          <div>
+            <input type="radio" id="por-rut" name="mercado" value="Por Rut" (change)="toggleInput('rut', true)" />
+            <label for="por-rut">Por Rut:</label>
+            <input type="text" id="rut" class="form-control" placeholder="12345678-9" [disabled]="!habilitarRut" />
+          </div>
+          <div>
+            <input type="radio" id="por-sucursal" name="mercado" value="Por Sucursal" (change)="toggleInput('sucursal', true)"/>
+            <label for="por-sucursal">Por Sucursal:</label>
+            <input type="text" id="sucursal" class="form-control" placeholder="Sucursal" [disabled]="!habilitarSucursal" />
+          </div>
+        </div>
+      </div>
+
+      <div class="right-column">
+        <div>
+          <input type="radio" id="manuales" name="tipoFacturacion" value="Manuales" (change)="toggleOperacionesDiarias(false)" />
+          <label for="manuales">Manuales</label>
+        </div>
+        <div>
+          <input type="radio" id="gastoTrimestralesGestInver" name="tipoFacturacion" value="Gastos Trimestrales GestInver" />
+          <label for="gastoTrimestralesGestInver">Gastos Trimestrales</label>
+        </div>
+        <div>
+          <input type="radio" id="gastoMensuales" name="tipoFacturacion" value="Gastos Mensuales" />
+          <label for="gastoMensuales">Gastos Mensuales</label>
+        </div>
+        <div>
+          <input type="radio" id="comisionPorCustodia" name="tipoFacturacion" value="Comision Por Custodia" />
+          <label for="comisionPorCustodia">Comisión por Custodia</label>
+        </div>
+        <div>
+          <input type="radio" id="operacionesManualesCVdeRV" name="tipoFacturacion" value="Operaciones Manuales de C/V de RV" />
+          <label for="operacionesManualesCVdeRV">Operaciones Manuales de C/V de RV</label>
+        </div>
+        <div>
+          <input type="radio" id="accionesInternacionales" name="tipoFacturacion" value="Acciones Internacionales" />
+          <label for="accionesInternacionales">Acciones Internacionales</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documentos Disponibles -->
+  <div class="section documentos-disponibles">
+    <div class="header">
+      <label>Documentos Disponibles:</label>
+      <div class="radio-group">
+        <input type="radio" id="afectas" name="filtro" value="Afectas" (change)="filtrarDocumentos('Afectas')" />
+        <label for="afectas">Afectas</label>
+        <input type="radio" id="exentas" name="filtro" value="Exentas" (change)="filtrarDocumentos('Exentas')" />
+        <label for="exentas">Exentas</label>
+      </div>
+    </div>
+    <input type="checkbox" id="seleccionar-todos" (change)="toggleAll($event)" />
+    <label for="seleccionar-todos">Seleccionar Todos</label>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Seleccionar</th>
+          <th>Correlativo</th>
+          <th>Nro Cuenta</th>
+          <th>Subtotal</th>
+          <th>Comisión</th>
+          <th>Derechos</th>
+          <th>Otros Gastos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of documentosFiltrados">
+          <td>
+            <input type="checkbox" [(ngModel)]="item.selected" />
+          </td>
+          <td>{{ item.correlativo }}</td>
+          <td>{{ item.nro_cuenta }}</td>
+          <td>{{ item.subtotal | currency }}</td>
+          <td>{{ item.comision | currency }}</td>
+          <td>{{ item.derechos | currency }}</td>
+          <td>{{ item.otros_gastos | currency }}</td>
+        </tr>
+      </tbody>
+      <div class="table-footer">
+        Total de registros: {{ documentosFiltrados.length }}
+      </div>
+    </table>
+  </div>
+
+  <!-- Botones -->
+  <div class="form-actions">
+    <button type="button" class="btn btn-primary">Enviar</button>
+    <button type="button" class="btn btn-secondary">Consultar</button>
+    <button type="button" class="btn btn-secondary">Salir</button>
+  </div>
+</div>

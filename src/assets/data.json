@@ -1,0 +1,23 @@
+{
+    "data": [
+      {
+        "correlativo": "4030345",
+        "nro_cuenta": "11185594-90",
+        "subtotal": 1000.50,
+        "comision": 50.25,
+        "derechos": 20.00,
+        "otros_gastos": 15.75,
+        "iva": 190.00
+      },
+      {
+        "correlativo": "4030346",
+        "nro_cuenta": "10006594-97",
+        "subtotal": 2000.00,
+        "comision": 100.00,
+        "derechos": 40.00,
+        "otros_gastos": 30.00,
+        "iva": 380.00
+      }
+    ]
+  }
+  

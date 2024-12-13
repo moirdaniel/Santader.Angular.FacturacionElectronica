@@ -1,0 +1,58 @@
+<div class="consulta-estado-container">
+    <h2>Consulta Estado Documentos</h2>
+    <form>
+      <div class="form-group">
+        <label for="fecha-documento">Documento del día:</label>
+        <input type="date" id="fecha-documento" class="form-control" />
+      </div>
+  
+      <div class="radio-group">
+        <!-- Grupo Tipo Documento -->
+        <div class="radio-item">
+          <label>Tipo Documento:</label>
+          <input type="radio" id="factura" name="tipoDocumento" value="Factura" />
+          <label for="factura">Factura</label>
+          <input type="radio" id="nota-credito" name="tipoDocumento" value="Nota Crédito" />
+          <label for="nota-credito">Nota Crédito</label>
+        </div>
+  
+        <!-- Grupo Estado -->
+        <div class="radio-item">
+          <label>Estado:</label>
+          <input type="radio" id="no-enviadas" name="estado" value="No Enviadas" />
+          <label for="no-enviadas">No Enviadas</label>
+          <input type="radio" id="enviadas" name="estado" value="Enviadas" />
+          <label for="enviadas">Enviadas</label>
+          <input type="radio" id="impresas" name="estado" value="Impresas" />
+          <label for="impresas">Impresas</label>
+        </div>
+      </div>
+  
+      <div class="estado-documentos">
+        <h3>Estado de Documentos</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Estado</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let documento of documentos">
+              <td>{{ documento.tipo }}</td>
+              <td>{{ documento.estado }}</td>
+              <td>{{ documento.fecha }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="form-actions">
+        <button type="button" class="btn btn-primary" (click)="recuperarFolios()">Recuperar Folios</button>
+        <button type="button" class="btn btn-primary" (click)="consultarEstado()">Consultar</button>
+        <button type="button" class="btn btn-secondary">Volver</button>
+      </div>
+    </form>
+  </div>
+  

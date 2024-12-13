@@ -1,0 +1,70 @@
+.envio-documentos-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #d32f2f; /* Estilo Santander */
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.radio-group.vertical-layout {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.mercado-operaciones {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+table th,
+table td {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+table th {
+  background-color: #d32f2f; /* Rojo Santander */
+  color: white;
+}
+
+.table-footer {
+  margin-top: 10px;
+  text-align: right;
+  font-weight: bold;
+  color: #d32f2f; /* Rojo Santander */
+}
+
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.left-column, .right-column {
+  display: inline-block;
+  width: 40%;
+  vertical-align: top;
+}
